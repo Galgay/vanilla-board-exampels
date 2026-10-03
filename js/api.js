@@ -1,11 +1,12 @@
 // 기존 Spring ApiResponse 규격: { success, message, data }
+const API_BASE_URL = "http://127.0.0.1:8080/api";
 async function apiRequest(path, method = "GET", body = null) {
   const headers = {};
   if (isLoggedIn() && path !== "/auth/login") Object.assign(headers, authHeaders());
   if (body !== null) headers["Content-Type"] = "application/json";
   let response;
   try {
-    response = await fetch(`http://127.0.0.1:8080/api${path}`, {
+    response = await fetch(`${API_BASE_URL}${path}`, {
       method, headers, body: body === null ? undefined : JSON.stringify(body)
     });
   } catch { throw new Error("서버에 연결할 수 없습니다. 연결 후 다시 시도하세요."); }
