@@ -13,3 +13,16 @@ function setupNavigation() {
   });
 }
 setupNavigation();
+
+document.querySelector(".logout-button").addEventListener("click", async function () {
+  try {
+    const accessToken = localStorage.getItem("boardAccessToken");
+    const response = await fetch("http://127.0.0.1:8080/api/auth/logout", {
+      method: "POST", headers: { ...authHeaders(), "Content-Type": "application/json" },
+      body: JSON.stringify({ accessToken })
+    });
+    if (!response.ok) throw new Error("로그아웃에 실패했습니다.");
+    localStorage.removeItem("boardAccessToken");
+    location.href = "login.html";
+  } catch (error) { document.querySelector("#nav-message").textContent = error.message; }
+});
