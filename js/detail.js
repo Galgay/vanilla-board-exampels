@@ -17,9 +17,25 @@ async function loadPost() {
 }
 document.querySelector("#comments-section").hidden = true;
 if (requireLogin()) {
-  if (Number.isSafeInteger(postId) && postId > 0) loadPost();
+  if (Number.isSafeInteger(postId) && postId > 0) {
+    loadPost().then(function (success) {
+      if (success) {
+        document.querySelector("#comments-section").hidden = false;
+        document.querySelector("#comment-form").hidden = true;
+        loadComments();
+      }
+    });
+  }
   else {
     document.querySelector("#post-title").textContent = "잘못된 게시글 번호입니다.";
     document.querySelector("#post-content").textContent = "";
   }
+}
+
+async function loadComments() {
+  try {
+    const comments = await apiRequest(`/board/${postId}/comments`);
+    renderComments(comments);
+    document.querySelector("#comment-message").textContent = "";
+  } catch (error) { document.querySelector("#comment-message").textContent = error.message; }
 }
