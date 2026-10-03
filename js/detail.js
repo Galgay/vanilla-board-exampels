@@ -3,10 +3,8 @@ const postId = Number(params.get("id"));
 let postReady = false;
 async function loadPost() {
   try {
-    const response = await fetch(`http://127.0.0.1:8080/api/board/${postId}`, { headers: authHeaders() });
-    const result = await response.json();
-    if (!response.ok || !result.success) throw new Error(result.message || "게시글 조회 실패");
-    renderPost(result.data);
+    const post = await apiRequest(`/board/${postId}`);
+    renderPost(post);
     postReady = true;
     document.querySelector("#post-message").textContent = "";
     return true;
