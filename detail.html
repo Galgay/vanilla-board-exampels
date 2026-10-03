@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>게시글 상세 | 게시판</title>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">게시판</a>
+    <nav aria-label="주 메뉴">
+      <a href="index.html">게시판</a>
+      <a class="write-link" href="write.html">글쓰기</a>
+      <a class="login-link" href="login.html">로그인</a>
+      <button class="logout-button" type="button">로그아웃</button>
+    </nav>
+    <p id="nav-message" role="status"></p>
+  </header>
+  <main>
+    <article>
+      <h1 id="post-title">첫 번째 게시글</h1>
+      <p id="post-meta" class="meta">학생 · 2026-10-03</p>
+      <p id="post-content">게시판 실습 내용입니다.</p>
+      <p id="post-message" role="status"></p>
+    </article>
+    <a href="index.html">목록으로</a>
+    <section id="comments-section" aria-labelledby="comments-title">
+      <h2 id="comments-title">댓글</h2>
+      <p id="comment-message" role="status"></p>
+      <ul id="comment-list"><li><strong>학생</strong><p>첫 댓글입니다.</p></li></ul>
+      <form id="comment-form">
+        <label for="comment-content">댓글 내용</label>
+        <textarea id="comment-content" name="content" required maxlength="255"></textarea>
+        <button type="submit">댓글 등록</button>
+      </form>
+    </section>
+  </main>
+  <footer>게시판 실습</footer>
+</body>
+</html>
