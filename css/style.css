@@ -13,3 +13,12 @@ button { background: #23663d; color: white; cursor: pointer; }
 input, textarea { width: 100%; background: white; color: #243b2d; }
 [role="alert"] { color: #a12525; }
 [hidden] { display: none !important; }
+
+header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background-image: url("../images/leaf.svg"); background-repeat: no-repeat; background-position: right top; }
+nav, .meta, .pagination { display: flex; align-items: center; gap: 16px; }
+.pagination { justify-content: center; margin-top: 24px; }
+form { display: flex; flex-direction: column; gap: 12px; }
+#nav-message { flex-basis: 100%; margin: 0; }
+#post-content, #comment-list p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.post-list a { overflow-wrap: anywhere; }
+img { max-width: 100%; height: auto; }
