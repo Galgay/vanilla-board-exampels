@@ -14,6 +14,6 @@ document.querySelector("#login-form").addEventListener("submit", async function 
     if (!response.ok || !result.success) throw new Error(result.message || "로그인에 실패했습니다.");
     if (!result.data.accessToken) throw new Error("로그인 토큰이 없습니다.");
     localStorage.setItem("boardAccessToken", result.data.accessToken);
-    message.textContent = "로그인했습니다.";
+    location.href = "index.html";
   } catch (error) { message.textContent = error.message; }
 });

@@ -11,3 +11,5 @@ form.addEventListener("submit", function (event) {
   saveLocal();
   location.href = "index.html";
 });
+
+requireLogin();
