@@ -21,7 +21,7 @@ if (requireLogin()) {
     loadPost().then(function (success) {
       if (success) {
         document.querySelector("#comments-section").hidden = false;
-        document.querySelector("#comment-form").hidden = true;
+        document.querySelector("#comment-form").hidden = false;
         loadComments();
       }
     });
@@ -39,3 +39,17 @@ async function loadComments() {
     document.querySelector("#comment-message").textContent = "";
   } catch (error) { document.querySelector("#comment-message").textContent = error.message; }
 }
+
+document.querySelector("#comment-form").addEventListener("submit", async function (event) {
+  event.preventDefault();
+  if (!postReady || !requireLogin()) return;
+  const input = document.querySelector("#comment-content");
+  const content = input.value.trim();
+  const message = document.querySelector("#comment-message");
+  if (!content || content.length > 255) { message.textContent = "댓글은 1~255자로 입력하세요."; return; }
+  try {
+    await apiRequest(`/board/${postId}/comments`, "POST", { content });
+    input.value = "";
+    await loadComments();
+  } catch (error) { message.textContent = error.message; }
+});
