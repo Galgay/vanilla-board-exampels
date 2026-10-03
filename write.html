@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>글쓰기 | 게시판</title>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">게시판</a>
+    <nav aria-label="주 메뉴">
+      <a href="index.html">게시판</a>
+      <a class="write-link" href="write.html">글쓰기</a>
+      <a class="login-link" href="login.html">로그인</a>
+      <button class="logout-button" type="button">로그아웃</button>
+    </nav>
+    <p id="nav-message" role="status"></p>
+  </header>
+  <main>
+    <h1>글쓰기</h1>
+    <form id="post-form">
+      <label for="title">제목 (10~50자)</label>
+      <input id="title" name="title" required minlength="10" maxlength="50">
+      <label for="content">본문 (10자 이상)</label>
+      <textarea id="content" name="content" required minlength="10" rows="10"></textarea>
+      <p id="form-message" role="status"></p>
+      <button type="submit">게시글 등록</button>
+      <a href="index.html">목록으로</a>
+    </form>
+  </main>
+  <footer>게시판 실습</footer>
+</body>
+</html>
