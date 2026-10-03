@@ -11,3 +11,17 @@ if (post) {
   document.querySelector("#post-content").textContent = "";
   document.querySelector("#comments-section").hidden = true;
 }
+
+document.querySelector("#comment-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const input = document.querySelector("#comment-content");
+  const content = input.value.trim();
+  if (!post || !content || content.length > 255) {
+    document.querySelector("#comment-message").textContent = "댓글은 1~255자로 입력하세요.";
+    return;
+  }
+  comments.push({ id: nextId(comments), boardId: postId, content, author: "실습 사용자" });
+  saveLocal();
+  input.value = "";
+  renderComments(comments.filter(comment => comment.boardId === postId));
+});
