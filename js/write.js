@@ -9,9 +9,14 @@ form.addEventListener("submit", async function (event) {
     message.textContent = "제목은 10~50자, 본문은 10자 이상 입력하세요.";
     return;
   }
+  const button = form.querySelector('button[type="submit"]');
+  if (button.disabled) return;
+  button.disabled = true;
+  message.textContent = "저장 중…";
   try {
     await apiRequest("/board", "POST", { title, content });
     location.href = "index.html";
   } catch (error) { message.textContent = error.message; }
+  finally { button.disabled = false; }
 });
 requireLogin();

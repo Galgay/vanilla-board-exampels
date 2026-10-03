@@ -15,10 +15,14 @@ function setupNavigation() {
 setupNavigation();
 
 document.querySelector(".logout-button").addEventListener("click", async function () {
+  if (this.disabled) return;
+  this.disabled = true;
+  document.querySelector("#nav-message").textContent = "로그아웃 중…";
   try {
     const accessToken = localStorage.getItem("boardAccessToken");
     await apiRequest("/auth/logout", "POST", { accessToken });
     localStorage.removeItem("boardAccessToken");
     location.href = "login.html";
   } catch (error) { document.querySelector("#nav-message").textContent = error.message; }
+  finally { this.disabled = false; }
 });
